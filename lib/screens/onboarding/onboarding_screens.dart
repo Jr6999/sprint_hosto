@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:sprint_hosto/screens/login_screens/login_screen.dart';
 import 'package:sprint_hosto/widget/custom_elevated_button.dart';
+import 'package:sprint_hosto/widget/form.dart';
+import 'package:sprint_hosto/screens/login_screens/login_screen.dart';
 
 class OnboardingScreens extends StatefulWidget {
   const OnboardingScreens({super.key});
@@ -86,14 +87,14 @@ class _OnboardingScreensState extends State<OnboardingScreens> {
                         curve: Curves.easeInOut,
                       );
                     } else {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                     }
                   },
                 ),
                 const SizedBox(height: 10),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                   },
                   child: Text(
                     'Passer',

@@ -1,69 +1,75 @@
 import 'package:flutter/material.dart';
-import 'package:sprint_hosto/screens/onboarding/onboarding_screens.dart';
 import 'package:sprint_hosto/widget/custom_elevated_button.dart';
-class MyCustomForm extends StatefulWidget {
-  const MyCustomForm({super.key});
-
+class MyForm extends StatefulWidget {
   @override
-  State<MyCustomForm> createState() => _MyCustomFormState();
+  _MyFormState createState() => _MyFormState();
 }
 
-class _MyCustomFormState extends State<MyCustomForm> {
+class _MyFormState extends State<MyForm> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
-        borderRadius: BorderRadius.circular(12.0),
-        boxShadow: [
-          BoxShadow(
-            color: Theme.of(context).colorScheme.shadow,
-            blurRadius: 10,
-            offset: const Offset(0, 5),
+    return SafeArea(
+      child: SingleChildScrollView(
+        key: _formKey,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10.0),
           ),
-        ],
-      ),
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.asset('asserts/images/logo.png', width: 100, height: 100),
-          const SizedBox(height: 16),
-          TextFormField(
-            decoration: InputDecoration(
-              labelText: 'Mail',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                Image.asset(
+                  'asserts/images/logo.png',
+                  width: 10.0,
+                  height: 10.0,
+                ),
+                SizedBox(height: 20.0),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Email',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                SizedBox(height: 10.0),
+                TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter a password';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.primary,
+                        width: 2.0,
+                      ),
+                    ),
+                  ),
+                  obscureText: true,
+                ),
+                SizedBox(height: 20.0),
+                CustomElevatedButton(
+                  label: 'Submit',
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      Navigator.pushReplacementNamed(context, '/success');
+                    }else{
+                      Text('Validez le formulaire');
+                    }
+                  },
+                )
+              ],
             ),
           ),
-          const SizedBox(height: 16),
-          TextFormField(
-            validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Veuillez entrer un mot de passe';
-                }
-                return null;
-              },
-            decoration: InputDecoration(
-              labelText: 'Mot de passe',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-            ),
-            obscureText: true,
-          ),
-          const SizedBox(height: 16),
-          CustomElevatedButton(
-            label: 'Se connecter',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const OnboardingScreens()),
-              );
-            },
-          ),
-        ],
+        ),
       ),
     );
   }
