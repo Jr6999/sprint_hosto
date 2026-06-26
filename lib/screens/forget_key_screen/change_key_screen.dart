@@ -6,23 +6,25 @@ import 'package:sprint_hosto/utile/colors.dart';
 import 'package:sprint_hosto/screens/forget_key_screen/forget_key_screen.dart';
 import 'package:sprint_hosto/screens/sign_in_screen/sign_in_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class ChangeKeyScreen extends StatefulWidget {
+  const ChangeKeyScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<ChangeKeyScreen> createState() => _ChangeKeyScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _ChangeKeyScreenState extends State<ChangeKeyScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  String? _selectedRole = 'patient';
+  final _newPasswordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
 
   @override
   void dispose() {
-    _emailController.dispose();
+    _newPasswordController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -56,21 +58,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 15.0),
                 Text(
-                  'Bienvenue sur votre application de santé',
+                  'Modifier votre mot de passe pour vos prochaine connexion',
                   textAlign: TextAlign.center,
                   style :Theme.of(context).textTheme.bodySmall,
                 ),
-                Text(
-                  'Connectez-vous pour continuer',
-                  textAlign: TextAlign.center,
-                  style :Theme.of(context).textTheme.bodySmall,
-                ),
-                
                 SizedBox(height: 20.0),
                 TextFormField(
-                  controller: _emailController,
+                  controller: _passwordController,
                   decoration: InputDecoration(
-                    labelText: 'Email',
+                    labelText: 'Ancien mot de passe',
                     labelStyle: Theme.of(context).textTheme.labelLarge,
                     border: OutlineInputBorder(),
                   ),
@@ -84,6 +80,62 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                   controller: _passwordController,
+                  decoration: InputDecoration(
+                    labelText: 'Nouveau Mot de passe',
+                    labelStyle: Theme.of(context).textTheme.labelLarge,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: BorderSide(
+                        color: border,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.primary,
+                        width: 2.0,
+                      ),
+                    ),
+                  ),
+                  obscureText: true,
+                ),
+                SizedBox(height: 5.0),
+                TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter a password';
+                    }
+                    return null;
+                  },
+                  controller: _confirmPasswordController,
+                  decoration: InputDecoration(
+                    labelText: 'Confirmer le Password',
+                    labelStyle: Theme.of(context).textTheme.labelLarge,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: BorderSide(
+                        color: border,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.primary,
+                        width: 2.0,
+                      ),
+                    ),
+                  ),
+                  obscureText: true,
+                ),
+                SizedBox(height: 5.0),
+                TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter a password';
+                    }
+                    return null;
+                  },
+                  controller: _newPasswordController,
                   decoration: InputDecoration(
                     labelText: 'Password',
                     labelStyle: Theme.of(context).textTheme.labelLarge,
@@ -103,60 +155,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   obscureText: true,
                 ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Vous êtes :',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                ),
-                const SizedBox(height: 5.0),
-                RadioGroup<String>(
-                  groupValue: _selectedRole,
-                  onChanged: (String? value) {
-                    setState(() {
-                      _selectedRole = value;
-                    });
-                  },
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: RadioListTile<String>(
-                          title: Text('Patient'),
-                          value: 'patient',
-                          contentPadding: EdgeInsets.zero,
-                        ),
-                      ),
-                      Expanded(
-                        child: RadioListTile<String>(
-                          title: Text('Docteur'),
-                          value: 'doctor',
-                          contentPadding: EdgeInsets.zero,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 5.0),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: CustomTextButton(
-                    child: Text('Mot de passe oublié?'),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/forgot-password');
-                    }),
-                ),
+                
                 SizedBox(height: 10.0),
                 CustomElevatedButton(
-                  label: "Se connecter",
+                  label: "Modifier",
                   onPressed: () {
-                    if (_formKey.currentState!.validate() && (_selectedRole=='doctor')) {
-                      Text('Login successful', style: TextStyle(color: success),);
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => ForgetScreen()));
-                    }else{
-                      Text('Login failed', style: TextStyle(color: error),);
-                    }
-                  }
+                    
+                  },
                 ),
                 SizedBox(height: 10.0),
                 CustomOutlinedButton(
