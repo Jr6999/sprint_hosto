@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sprint_hosto/screens/login_screens/login_screen.dart';
+import 'package:sprint_hosto/screens/sign_in_screen/sign_in_screen.dart';
+import 'package:sprint_hosto/screens/forget_key_screen/confirm_mail_screen.dart';
+import 'package:sprint_hosto/screens/forget_key_screen/change_key_screen.dart';
+import 'package:sprint_hosto/screens/forget_key_screen/forget_key_screen.dart';
 import 'package:sprint_hosto/screens/onboarding/onboarding_screens.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sprint_hosto/utile/colors.dart';
@@ -21,6 +26,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const OnboardingScreens(),
+        '/login': (context) => const LoginScreen(),
+        '/register': (context) => const RegisterScreen(),
+        '/confirm-mail': (context) => const ConfirmMailScreen(),
+        '/change-key': (context) => const ChangeKeyScreen(),
+        '/forget-key': (context) => const ForgetScreen(),
+
+      },
       theme: ThemeData(
         useMaterial3: true,
 
@@ -189,7 +204,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const OnboardingScreens(),
+      //home: const OnboardingScreens(),
     );
   }
 }

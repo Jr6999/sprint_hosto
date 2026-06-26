@@ -86,14 +86,14 @@ class _OnboardingScreensState extends State<OnboardingScreens> {
                         curve: Curves.easeInOut,
                       );
                     } else {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                     Navigator.pushNamed(context, '/login');
                     }
                   },
                 ),
                 const SizedBox(height: 10),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                    Navigator.pushNamed(context, '/login');
                   },
                   child: Text(
                     'Passer',

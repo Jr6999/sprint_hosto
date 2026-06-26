@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sprint_hosto/widget/custom_elevated_button.dart';
-import 'package:sprint_hosto/widget/custom_text_button.dart';
-import 'package:sprint_hosto/widget/custom_outlined_button.dart';
 import 'package:sprint_hosto/utile/colors.dart';
-import 'package:sprint_hosto/screens/forget_key_screen/forget_key_screen.dart';
-import 'package:sprint_hosto/screens/sign_in_screen/sign_in_screen.dart';
 
 class ChangeKeyScreen extends StatefulWidget {
   const ChangeKeyScreen({super.key});
@@ -34,7 +30,7 @@ class _ChangeKeyScreenState extends State<ChangeKeyScreen> {
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
-          padding: const EdgeInsets.only(top: 50.0, left: 16.0, right: 16.0),
+          padding: const EdgeInsets.only(top: 110.0, left: 16.0, right: 16.0),
           child: Container(
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.surface,
@@ -161,13 +157,6 @@ class _ChangeKeyScreenState extends State<ChangeKeyScreen> {
                   label: "Modifier",
                   onPressed: () {
                     
-                  },
-                ),
-                SizedBox(height: 10.0),
-                CustomOutlinedButton(
-                  child: Text('Créer un compte'),
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen()));
                   },
                 ),
               ],

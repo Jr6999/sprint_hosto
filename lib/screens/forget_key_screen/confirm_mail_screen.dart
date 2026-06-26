@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class EmailVerificationScreen extends StatefulWidget {
-  const EmailVerificationScreen({super.key});
+class ConfirmMailScreen extends StatefulWidget {
+  const ConfirmMailScreen({super.key});
 
   @override
-  State<EmailVerificationScreen> createState() => _EmailVerificationScreenState();
+  State<ConfirmMailScreen> createState() => _ConfirmMailScreenState();
 }
 
-class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
+class _ConfirmMailScreenState extends State<ConfirmMailScreen> {
   final List<String> _otpCode = ["", "", "", "","",""];
 
   @override
@@ -53,6 +53,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('Code saisi : $finalCode')),
                     );
+                    Navigator.pushNamed(context, '/change-key');
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Veuillez remplir tous les champs')),
@@ -74,8 +75,8 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
     required bool last,
   }) {
     return SizedBox(
-      height: 68,
-      width: 64,
+      height: 50,
+      width: 50,
       child: TextFormField(
         autofocus: first, 
         onChanged: (value) {
@@ -90,7 +91,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
         },
         keyboardType: TextInputType.number,
         textAlign: TextAlign.center,
-        style: Theme.of(context).textTheme.headlineMedium,
+        style: Theme.of(context).textTheme.headlineLarge,
         inputFormatters: [
           LengthLimitingTextInputFormatter(1),
           FilteringTextInputFormatter.digitsOnly,
