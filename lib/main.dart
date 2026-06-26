@@ -59,7 +59,13 @@ class MyApp extends StatelessWidget {
           ),
 
           headlineMedium: GoogleFonts.poppins(
-            fontSize: 24,
+            fontSize: 22,
+            fontWeight: FontWeight.w700,
+            color: textPrimary,
+          ),
+
+          headlineSmall: GoogleFonts.poppins(
+            fontSize: 18,
             fontWeight: FontWeight.w700,
             color: textPrimary,
           ),
@@ -84,7 +90,7 @@ class MyApp extends StatelessWidget {
           labelLarge: GoogleFonts.inter(
             fontSize: 15,
             fontWeight: FontWeight.w600,
-            color: Colors.white,
+            color: textSecondary,
           ),
         ),
 

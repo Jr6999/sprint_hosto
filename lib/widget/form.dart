@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sprint_hosto/widget/custom_elevated_button.dart';
 class MyForm extends StatefulWidget {
+  const MyForm({super.key});
+
   @override
   _MyFormState createState() => _MyFormState();
 }
